@@ -33,8 +33,57 @@ public class Main {
 //
         //scanner.close();
 
-        //printf
-        System.out.printf("Integer: %d%nString: %s", 10, "test");
+        //printf and .format
+        //System.out.printf("Integer: %d%nString: %s", 10, "test");
+//
+        //String name = "Blake";
+        //int age = 23;
+        //Double score = 2.3;
+        //String l = String.format("Name: %s%nAge: %d%nScore: %f", name, age, score);
+//
+        //System.out.println(l);
+
+        //conditional
+
+        //higher or lower game
+
+        int lives = 3; //user lives
+
+        int computerGuess = (int) (Math.random()*11); //random number between 1 and 10
+        Scanner scanner = new Scanner(System.in); //initiate scanner
+
+        while (lives > 0) { // while user has lives
+            System.out.println(lives+" lives left.");
+            System.out.println("Enter a number between 1 and 10.");
+            int userGuess = Integer.parseInt(scanner.nextLine().trim()); //get user guess and convert to int
+            if (userGuess > computerGuess) { // if user guess is greater than computer guess:
+                System.out.println("The computer's guess was lower.");
+                --lives; // remove 1 life
+            } else if (userGuess < computerGuess) { // if user guess is lower than computer guess:
+                System.out.println("The computer's guess was higher.");
+                --lives; // remove 1 life
+            } else { // else (if user guess is the same as computer guess)
+                System.out.println("Correct!");
+                break; // end loop
+            }
+
+        }
+        
+
+        //ternary operator
+
+        boolean win_condition = (lives == 0) ? false : true; //this is kind of a stupid one, I could just do !(lives ==0) or flip the if statement
+        if (win_condition) { // if lives = 0:
+            System.out.println("You won!");
+        } else { // else (if lives != 0):
+            System.out.println("0 lives left.");
+            System.out.println("You lost!");
+        }
+
+
+        scanner.close(); // close scanner
+
+
         
     }
 }
