@@ -54,8 +54,13 @@ public class Main {
 
         while (lives > 0) { // while user has lives
             System.out.println(lives+" lives left.");
-            System.out.println("Enter a number between 1 and 10.");
-            int userGuess = Integer.parseInt(scanner.nextLine().trim()); //get user guess and convert to int
+            int userGuess = -1; // Set userguess outside of do scope
+
+            do { // do validation
+                System.out.println("Enter a number between 1 and 10.");
+                userGuess = Integer.parseInt(scanner.nextLine().trim()); //set userGuess to user's guess and convert to int
+            } while (userGuess < 1 || userGuess > 10); // while userguess is less than 1 or more than 10
+
             if (userGuess > computerGuess) { // if user guess is greater than computer guess:
                 System.out.println("The computer's guess was lower.");
                 --lives; // remove 1 life
