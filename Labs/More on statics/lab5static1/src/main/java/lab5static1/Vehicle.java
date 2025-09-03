@@ -4,11 +4,12 @@ public class Vehicle {
     int speed;
     int lane;
     int distanceTravelled;
-    RegistrationPlate registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
+    RegistrationPlate registrationPlate;
 
     public Vehicle(int speed, int lane) {
         this.speed = speed;
         this.lane = lane;
+        registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
     }
     public void accelerate(int amount) {
         if (amount < 200) {
