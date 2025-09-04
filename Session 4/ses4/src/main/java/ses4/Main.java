@@ -1,7 +1,7 @@
-package sfm;
+package ses4;
 
 public class Main {
     public static void main(String[] args) {
-        new Game(); //starts game
+        System.out.println("Hello world!");
     }
 }
