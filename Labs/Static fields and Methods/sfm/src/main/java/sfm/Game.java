@@ -7,21 +7,24 @@ import java.util.Timer;
 import javax.swing.*;
 
 public class Game extends Canvas {
-    Ball[] balls = {
-        new Ball(200,100,10,10,5,5),
-        new Ball(10,200,20,20,10,5),
-        new Ball(150,50,30,20,5,10)
-    }; // This is an array that is used to create the balls, to edit the balls change these values
+
+    ArrayList<Shape> shapes = new ArrayList<>();
 
     /* x = x position
      * y = y position
-     * w = width of the ball
-     * h = height of the ball
+     * w = width of the shape
+     * h = height of the shape
      * dirX = speed in x direction
      * dirY = speed in y direction
      */
 
-    Game() {
+    Game() { // constructor class called everytime the game starts
+ 
+        shapes.add(new Shape(200,100,10,10, ShapeType.RECTANGLE, Color.BLUE,5,5));// adding shapes to list
+        shapes.add(new Shape(10,200,20,20, ShapeType.OVAL, Color.RED,10,5));// adding shapes to list
+        shapes.add(new Shape(150,50,30,20, ShapeType.ROUNDRECTANGLE, Color.GREEN,5,10));// adding shapes to list
+        // This is an array that is used to create the shapes, to edit the shapes change these values
+ 
         JFrame frame = new JFrame(); // creates a new frame
         this.setSize(400,400); // set size of window
         frame.add(this); // add size of window property to frame
@@ -47,17 +50,29 @@ public class Game extends Canvas {
     }
 
     public void draw() { // the draw method
-        for(Ball ball : balls) { // for each of the balls in the ball array
-            ball.move(); // move the balls
+        for(Shape shape : shapes) { // for each of the shapes in the shape array
+            shape.move(); // move the shapes
         };
         this.repaint(); // repaint the window
     }
 
     public void paint(Graphics g) { // paint method
         g.drawRect(0,0,300,300); // draws boundary rectangle
-        for(Ball ball : balls) { // for each of the balls in ball array
-            g.drawOval(ball.x, ball.y, ball.w, ball.h); // draw the balls
-            ball.move(); // do the first movement
+        for(Shape shape : shapes) { // for each of the shapes in shape array
+            g.setColor(shape.getColour());
+            if (shape.getShapeType() == ShapeType.RECTANGLE) {
+                g.drawRect(shape.x, shape.y, shape.w, shape.h);
+            } else if (shape.getShapeType() == ShapeType.THREEDRECTANGLE){
+                g.draw3DRect(shape.x, shape.y, shape.w, shape.h, true);
+            } else if (shape.getShapeType() == ShapeType.ROUNDRECTANGLE){
+                g.drawRoundRect(shape.x, shape.y, shape.w, shape.h, 5, 5);
+            } else if (shape.getShapeType() == ShapeType.OVAL) {
+                g.drawOval(shape.x, shape.y, shape.w, shape.h); // draw the shapes
+            } else if (shape.getShapeType() == ShapeType.ARC) {
+                g.drawArc(shape.x, shape.y, shape.w, shape.h, 90, 180);
+            }
+            
+            shape.move(); // do the first movement
         };
     }
     

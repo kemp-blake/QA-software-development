@@ -1,19 +1,25 @@
 package sfm;
 
-public class Ball {// create object ball
+import java.awt.Color;
+
+public class Shape {// create object shape
     public int x, y, w, h; // size and width
     private int dirX, dirY; // direction and speed
+    private ShapeType shapeType = ShapeType.OVAL; // type of shape
+    private Color colour = Color.BLACK;
 
-    public Ball(int x, int y, int w, int h, int dirX, int dirY) { // constructor 1
+    public Shape(int x, int y, int w, int h, ShapeType shapeType, Color colour, int dirX, int dirY) { // constructor 1
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.shapeType = shapeType;
+        this.colour = colour;
         this.dirX = dirX;
         this.dirY = dirY;
     }
 
-    public Ball(int x, int y, int w, int h) { // constructor 2
+    public Shape(int x, int y, int w, int h) { // constructor 2, this defaults to black circle
         this.x = x;
         this.y = y;
         this.w = w;
@@ -42,6 +48,14 @@ public class Ball {// create object ball
             y = 300 - h;
         }
         
+    }
+
+    public ShapeType getShapeType() {
+        return shapeType;
+    }
+
+    public Color getColour() {
+        return colour;
     }
     
 }
