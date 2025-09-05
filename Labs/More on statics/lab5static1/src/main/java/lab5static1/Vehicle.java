@@ -9,7 +9,11 @@ public class Vehicle {
     public Vehicle(int speed, int lane) {
         this.speed = speed;
         this.lane = lane;
-        registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
+        try{
+            registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
+        } catch (OutOfRegPlatesException e) {
+            System.out.println("A vehicle can not be created at this time due to: "+ e.getMessage());
+        }
     }
     public void accelerate(int amount) {
         if (amount < 200) {

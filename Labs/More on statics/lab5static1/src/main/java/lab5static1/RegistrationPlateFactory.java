@@ -11,8 +11,15 @@ public class RegistrationPlateFactory {
         "KR16 ABC", 
     };
     static int i = 0;
-    public static RegistrationPlate getNextRegistrationPlate(){
-        return new RegistrationPlate(registrationPlates[i++]);
+    public static RegistrationPlate getNextRegistrationPlate() {
+        RegistrationPlate regPlate;
+        try {
+            regPlate = new RegistrationPlate(registrationPlates[i++]);
+            return regPlate;
+        } catch (IndexOutOfBoundsException e) {
+            throw new OutOfRegPlatesException("The factory has run out of Registration plates.");
+        }
+        
 
     }
     
