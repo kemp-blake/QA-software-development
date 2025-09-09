@@ -1,6 +1,6 @@
 package lab9abstract;
 
-abstract class Animal {
+abstract class Animal implements Movable {
     protected AnimalType animalType;
     protected String name;
 
@@ -12,6 +12,10 @@ abstract class Animal {
     }
     public Animal(String name) {
         this.name = name;
+    }
+    @Override
+    public void move() {
+        System.out.println("Animal moves.");
     }
     
 }

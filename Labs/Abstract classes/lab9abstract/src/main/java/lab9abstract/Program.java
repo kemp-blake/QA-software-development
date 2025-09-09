@@ -16,11 +16,6 @@ public class Program {
 
         for (Animal animal : animals) {
             System.out.println(animal.getName());
-            
-            if (animal instanceof Fish){
-                Fish fish = (Fish) animal;
-                fish.swim();
-            }
             if (animal instanceof Bird){
                 Bird bird = (Bird) animal;
                 bird.makeNest();
@@ -29,6 +24,21 @@ public class Program {
                 Lizard lizard = (Lizard) animal;
                 lizard.makeNest();
             }
+
+
+            if (animal instanceof Flyable){
+                Flyable bird = (Flyable) animal;
+                bird.fly();
+            }
+            if (animal instanceof Swimmable){
+                Swimmable bird = (Swimmable) animal;
+                bird.swim();
+            }
+            if (animal instanceof Movable){
+                Movable bird = (Movable) animal;
+                bird.move();
+            }
+
             System.out.println("");
         }
     }
