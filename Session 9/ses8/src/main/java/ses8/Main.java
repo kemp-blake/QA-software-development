@@ -3,10 +3,12 @@ package src.main.java.ses8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntUnaryOperator;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -84,7 +86,57 @@ public class Main {
             .filter(isGreaterThan3)
             .forEach(System.out::println);
 
-            
+        List<String> names2 = Arrays.asList("chris", "bev", "adam");
+
+        // without stream
+        for (String name : names2) {
+            if (name.length() > 3) {
+                System.out.println(name.toUpperCase());
+            }
+        }
+
+        // with stream
+        names2.stream()
+            .filter((n) -> n.length() > 3)
+            .map(String::toUpperCase)
+            .forEach(System.out::println);
+
+        List<String> words2 = Arrays.asList("Cat", "dog", "rabbit");
+
+        long count = words2.stream()
+            .filter((n) -> n.length() > 3)
+            .count();
+        System.out.println(count);
+
+        List<Integer> nums1 = Arrays.asList(1,2,3,4,5,6);
+        int sum = nums1.stream()
+                    .reduce(0, (y, z) -> y + z);
+
+        System.out.println(sum);
+
+        List<String> upper2 = words2.stream()
+                                    .map(String::toUpperCase)
+                                    .toList();
+
+        System.out.println(upper2);
+
+        List<Customer> customers = Arrays.asList(
+            new Customer("John", "London"),
+            new Customer("Sarah", "New York"),
+            new Customer("Jane", "Paris")
+            );
+        
+        customers.stream()
+                .filter((c) -> c.getCity().equals("London"))
+                .map(Customer::getName)
+                .forEach(System.out::println);
+        
+        Optional<Customer> first = customers.stream()
+                                            .filter((c) -> c.getCity().equals("London"))
+                                            .findFirst();
+
+        first.ifPresent((c) -> System.out.println(c.getName()));
+
 
     }
     public static Runnable runRunnable() {
